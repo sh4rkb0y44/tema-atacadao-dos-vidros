@@ -1,0 +1,12 @@
+<section style="padding:40px 0 80px;">
+  <div class="container" style="max-width:800px;margin:0 auto;padding:0 24px;">
+    <h1 style="font-size:36px;font-weight:900;letter-spacing:-0.04em;text-transform:uppercase;margin-bottom:8px;">{{ article.title }}</h1>
+    <p style="font-size:14px;color:var(--brand-muted);margin-bottom:32px;">{{ article.published_at | date: '%d de %B de %Y' }}</p>
+    {%- if article.image -%}
+      <img src="{{ article.image | image_url: width: 800 }}" alt="{{ article.title }}" style="width:100%;border-radius:var(--radius-lg);margin-bottom:32px;">
+    {%- endif -%}
+    <div style="font-size:16px;color:var(--brand-muted);line-height:1.8;">
+      {{ article.content }}
+    </div>
+  </div>
+</section>

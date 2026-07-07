@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "description": "Sua loja de vidros, espelhos e acessorios com preco de atacado."
+      }
+    }
+  },
+  "order": ["header", "footer"]
+}

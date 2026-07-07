@@ -1,0 +1,22 @@
+<section style="padding:40px 0 80px;">
+  <div class="container" style="max-width:1200px;margin:0 auto;padding:0 24px;">
+    <h1 style="font-size:36px;font-weight:900;letter-spacing:-0.04em;text-transform:uppercase;margin-bottom:32px;">Resultados para "{{ search.terms }}"</h1>
+    {%- if search.results_count > 0 -%}
+      <p style="font-size:16px;color:var(--brand-muted);margin-bottom:32px;">{{ search.results_count }} resultados encontrados</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+        {%- for result in search.results -%}
+          {%- if result.object_type == 'product' -%}
+            {%- render 'product-card', product: result -%}
+          {%- else -%}
+            <a href="{{ result.url }}" style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;text-decoration:none;color:inherit;">
+              <h3 style="font-size:15px;font-weight:700;margin-bottom:8px;">{{ result.title }}</h3>
+              <p style="font-size:13px;color:var(--brand-muted);">{{ result.content | strip_html | truncate: 100 }}</p>
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p style="text-align:center;color:var(--brand-muted);padding:60px 0;">Nenhum resultado encontrado para "{{ search.terms }}".</p>
+    {%- endif -%}
+  </div>
+</section>

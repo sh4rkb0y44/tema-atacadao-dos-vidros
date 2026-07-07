@@ -1,0 +1,10 @@
+[
+  {
+    "type": "header",
+    "name": "Header"
+  },
+  {
+    "type": "footer",
+    "name": "Footer"
+  }
+]

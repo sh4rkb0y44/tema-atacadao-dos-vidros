@@ -1,0 +1,25 @@
+{%- if section.settings.show_announcement -%}
+<div class="announcement-bar" style="background:var(--brand-dark);color:var(--white);text-align:center;padding:10px 16px;font-size:13px;font-weight:600;letter-spacing:0.02em;">
+  {{ section.settings.announcement_text }}
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Barra de Anuncio",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Mostrar barra",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "announcement_text",
+      "label": "Texto",
+      "default": "<p>Frete gratis para compras acima de <strong>R$ 499</strong> — Parcele em ate <strong>12x sem juros</strong></p>"
+    }
+  ]
+}
+{% endschema %}

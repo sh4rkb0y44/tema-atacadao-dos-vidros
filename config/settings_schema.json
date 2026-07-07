@@ -1,0 +1,156 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Atacadao dos Vidros",
+    "theme_version": "1.0.0",
+    "theme_author": "SOMA+",
+    "theme_documentation_url": "https://github.com/tema-atacadao-dos-vidros",
+    "theme_support_url": "https://github.com/tema-atacadao-dos-vidros/issues"
+  },
+  {
+    "name": "Cores da Marca",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Paleta Principal"
+      },
+      {
+        "type": "color",
+        "id": "color_brand",
+        "label": "Azul Principal",
+        "default": "#2563EB"
+      },
+      {
+        "type": "color",
+        "id": "color_brand_deep",
+        "label": "Azul Profundo",
+        "default": "#1D4ED8"
+      },
+      {
+        "type": "color",
+        "id": "color_brand_light",
+        "label": "Azul Claro",
+        "default": "#3B82F6"
+      },
+      {
+        "type": "color",
+        "id": "color_brand_dark",
+        "label": "Cor Escura (Textos)",
+        "default": "#0F172A"
+      },
+      {
+        "type": "color",
+        "id": "color_brand_muted",
+        "label": "Cor Suave (Textos secundarios)",
+        "default": "#64748B"
+      },
+      {
+        "type": "color",
+        "id": "color_brand_bg",
+        "label": "Cor de Fundo",
+        "default": "#F8FAFC"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Cor de Destaque",
+        "default": "#FACC15"
+      }
+    ]
+  },
+  {
+    "name": "Logo",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo da loja"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "label": "Largura do logo",
+        "min": 50,
+        "max": 300,
+        "step": 10,
+        "default": 120,
+        "unit": "px"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      }
+    ]
+  },
+  {
+    "name": "Barra de Anuncio",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_announcement",
+        "label": "Mostrar barra de anuncio",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "announcement_text",
+        "label": "Texto da barra",
+        "default": "Frete gratis para compras acima de R$ 499 — Parcele em ate 12x sem juros"
+      },
+      {
+        "type": "text",
+        "id": "announcement_highlight",
+        "label": "Texto em destaque (aparece em amarelo)",
+        "default": "R$ 499,12x sem juros"
+      }
+    ]
+  },
+  {
+    "name": "Midias Sociais",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Contas"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram",
+        "info": "https://instagram.com/sualoja"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook",
+        "label": "Facebook"
+      },
+      {
+        "type": "text",
+        "id": "social_whatsapp",
+        "label": "WhatsApp",
+        "info": "Numero com DDD, apenas numeros"
+      }
+    ]
+  },
+  {
+    "name": "Carinho e Checkout",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_notes",
+        "label": "Permitir observacoes no carrinho",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Tipo de carrinho",
+        "options": [
+          { "value": "drawer", "label": "Gaveta lateral" },
+          { "value": "page", "label": "Pagina dedicada" }
+        ],
+        "default": "drawer"
+      }
+    ]
+  }
+]

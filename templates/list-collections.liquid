@@ -1,0 +1,16 @@
+<section style="padding:40px 0 80px;">
+  <div class="container" style="max-width:800px;margin:0 auto;padding:0 24px;">
+    <h1 style="font-size:36px;font-weight:900;letter-spacing:-0.04em;text-transform:uppercase;margin-bottom:8px;">Todas as Colecoes</h1>
+    <p style="font-size:16px;color:var(--brand-muted);margin-bottom:40px;">Navegue por nossas categorias de produtos</p>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+      {%- for collection in collections -%}
+        {%- unless collection.handle == 'frontpage' -%}
+          <a href="{{ collection.url }}" style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;text-decoration:none;color:inherit;transition:all var(--transition);display:block;">
+            <h3 style="font-size:20px;font-weight:800;text-transform:uppercase;margin-bottom:8px;">{{ collection.title }}</h3>
+            <p style="font-size:14px;color:var(--brand-muted);">{{ collection.products_count }} produtos</p>
+          </a>
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

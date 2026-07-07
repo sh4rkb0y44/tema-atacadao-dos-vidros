@@ -1,0 +1,56 @@
+<section style="padding:0 0 80px;">
+  <div class="container" style="max-width:1200px;margin:0 auto;padding:0 24px;">
+    <div style="background:var(--brand-dark);border-radius:var(--radius-lg);padding:60px;text-align:center;position:relative;overflow:hidden;">
+      <div style="position:relative;z-index:1;">
+        <h2 style="font-size:32px;font-weight:900;color:var(--white);letter-spacing:-0.04em;text-transform:uppercase;margin-bottom:12px;">{{ section.settings.title }}</h2>
+        {%- if section.settings.description != blank -%}
+          <p style="font-size:16px;color:#94A3B8;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;">{{ section.settings.description }}</p>
+        {%- endif -%}
+        {%- form 'customer', class: 'newsletter-form' -%}
+          <div style="display:flex;gap:12px;max-width:480px;margin:0 auto;">
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <input type="email" name="contact[email]" placeholder="{{ section.settings.placeholder }}" required style="flex:1;padding:14px 20px;border-radius:10px;border:1px solid #334155;background:#1E293B;color:var(--white);font-size:15px;font-family:inherit;outline:none;">
+            <button type="submit" style="padding:14px 28px;background:var(--brand);color:var(--white);font-size:15px;font-weight:700;border-radius:10px;text-transform:uppercase;letter-spacing:0.02em;border:none;cursor:pointer;">{{ section.settings.btn_text }}</button>
+          </div>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titulo",
+      "default": "Receba Ofertas Exclusivas"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Descricao",
+      "default": "Cadastre-se e receba promocoes, lancamentos e dicas para seu projeto direto no seu e-mail."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder do input",
+      "default": "Seu melhor e-mail"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Texto do botao",
+      "default": "Cadastrar"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

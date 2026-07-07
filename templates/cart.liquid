@@ -1,0 +1,48 @@
+<section style="padding:40px 0 80px;">
+  <div class="container" style="max-width:800px;margin:0 auto;padding:0 24px;">
+    <h1 style="font-size:36px;font-weight:900;letter-spacing:-0.04em;text-transform:uppercase;margin-bottom:32px;">Seu Carrinho</h1>
+
+    {%- if cart.item_count > 0 -%}
+      <form action="/cart" method="post">
+        <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:32px;">
+          {%- for item in cart.items -%}
+            <div style="display:flex;align-items:center;gap:20px;padding:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);">
+              {%- if item.image != blank -%}
+                <img src="{{ item | img_url: '100x100', crop: 'center' }}" alt="{{ item.title }}" style="width:80px;height:80px;object-fit:cover;border-radius:8px;">
+              {%- endif -%}
+              <div style="flex:1;">
+                <h3 style="font-size:15px;font-weight:700;margin-bottom:4px;">{{ item.product.title }}</h3>
+                {%- unless item.variant.title == 'Default Title' -%}
+                  <p style="font-size:13px;color:var(--brand-muted);">{{ item.variant.title }}</p>
+                {%- endunless -%}
+                <strong style="font-size:16px;font-weight:900;">{{ item.price | money }}</strong>
+              </div>
+              <div style="display:flex;align-items:center;border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+                <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" style="width:50px;text-align:center;border:none;padding:8px;font-size:14px;font-family:inherit;outline:none;">
+              </div>
+              <strong style="font-size:16px;font-weight:900;min-width:80px;text-align:right;">{{ item.line_price | money }}</strong>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:24px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+            <span style="font-size:18px;font-weight:700;">Subtotal</span>
+            <strong style="font-size:28px;font-weight:900;">{{ cart.total_price | money }}</strong>
+          </div>
+          <p style="font-size:13px;color:var(--brand-muted);margin-bottom:20px;">Frete calculado no checkout.</p>
+          <button type="submit" name="checkout" style="width:100%;padding:16px;background:var(--brand);color:var(--white);font-size:16px;font-weight:700;border-radius:10px;text-transform:uppercase;letter-spacing:0.02em;border:none;cursor:pointer;">
+            Finalizar Compra
+          </button>
+        </div>
+      </form>
+    {%- else -%}
+      <div style="text-align:center;padding:80px 0;">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#CBD5E1" stroke-width="1.5" style="margin:0 auto 24px;"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <h2 style="font-size:24px;font-weight:800;margin-bottom:12px;">Seu carrinho esta vazio</h2>
+        <p style="font-size:16px;color:var(--brand-muted);margin-bottom:28px;">Adicione produtos para continuar.</p>
+        <a href="/collections/all" style="display:inline-flex;padding:14px 28px;background:var(--brand);color:var(--white);font-size:15px;font-weight:700;border-radius:10px;text-transform:uppercase;text-decoration:none;">Ver Produtos</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>

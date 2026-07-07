@@ -1,0 +1,91 @@
+<footer style="background:var(--white);border-top:1px solid var(--border);padding:60px 0 32px;">
+  <div class="container" style="max-width:1200px;margin:0 auto;padding:0 24px;">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;">
+
+      <div>
+        <a href="/" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;">
+          {%- if settings.logo != blank -%}
+            <img src="{{ settings.logo | image_url: width: 120 }}" alt="{{ shop.name }}" style="height:auto;max-width:120px;">
+          {%- else -%}
+            <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
+              <polygon points="20,25 50,15 50,65 20,75" fill="{{ settings.color_brand }}" opacity="0.9"/>
+              <polygon points="50,15 80,25 80,75 50,65" fill="{{ settings.color_brand_deep }}"/>
+              <polygon points="20,25 50,15 80,25 50,35" fill="{{ settings.color_brand_light }}"/>
+            </svg>
+          {%- endif -%}
+          <div style="display:flex;flex-direction:column;line-height:1.1;">
+            <strong style="font-size:18px;font-weight:900;letter-spacing:-0.04em;text-transform:uppercase;">{{ shop.name }}</strong>
+          </div>
+        </a>
+        {%- if section.settings.description != blank -%}
+          <p style="font-size:14px;color:var(--brand-muted);margin-top:16px;line-height:1.6;max-width:300px;">{{ section.settings.description }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'link_list' -%}
+          <div {{ block.shopify_attributes }}>
+            <h5 style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:20px;">{{ block.settings.heading }}</h5>
+            <ul style="list-style:none;">
+              {%- for link in linklists[block.settings.menu].links -%}
+                <li style="margin-bottom:10px;">
+                  <a href="{{ link.url }}" style="font-size:14px;color:var(--brand-muted);text-decoration:none;">{{ link.title }}</a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid var(--border);font-size:13px;color:var(--brand-muted);flex-wrap:wrap;gap:16px;">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. Todos os direitos reservados.</span>
+      <div style="display:flex;gap:8px;">
+        {%- for type in shop.enabled_payment_types -%}
+          <span style="background:var(--brand-bg);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;">{{ type | payment_type_svg_tag }}</span>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Descricao da loja",
+      "default": "Sua loja de vidros, espelhos e acessorios com preco de atacado. Qualidade e confianca ha mais de 15 anos no mercado."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "Lista de Links",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Titulo",
+          "default": "Links"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "link_list", "settings": { "heading": "Produtos", "menu": "footer-products" } },
+      { "type": "link_list", "settings": { "heading": "Institucional", "menu": "footer-institutional" } },
+      { "type": "link_list", "settings": { "heading": "Atendimento", "menu": "footer-support" } }
+    ]
+  }
+}
+{% endschema %}

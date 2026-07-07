@@ -1,0 +1,36 @@
+{
+  "general": {
+    "tags": "Tags",
+    "page": "Pagina",
+    "search": "Buscar",
+    "cart": "Carrinho",
+    "menu": "Menu"
+  },
+  "accessibility": {
+    "skip_to_content": "Pular para o conteudo"
+  },
+  "products": {
+    "add_to_cart": "Adicionar ao Carrinho",
+    "sold_out": "Esgotado",
+    "on_sale": "Oferta",
+    "quantity": "Quantidade",
+    "subtotal": "Subtotal"
+  },
+  "cart": {
+    "title": "Seu Carrinho",
+    "empty": "Seu carrinho esta vazio",
+    "continue_shopping": "Continuar Comprando",
+    "checkout": "Finalizar Compra",
+    "shipping_note": "Frete calculado no checkout."
+  },
+  "newsletter": {
+    "email_placeholder": "Seu melhor e-mail",
+    "submit": "Cadastrar",
+    "success": "Obrigado por se cadastrar!"
+  },
+  "search": {
+    "title": "Resultados para",
+    "no_results": "Nenhum resultado encontrado",
+    "placeholder": "Buscar produtos..."
+  }
+}

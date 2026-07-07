@@ -1,0 +1,66 @@
+<section style="padding:0 0 80px;">
+  <div class="container" style="max-width:1200px;margin:0 auto;padding:0 24px;">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'trust_item' -%}
+          <div style="display:flex;align-items:flex-start;gap:16px;padding:24px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);" {{ block.shopify_attributes }}>
+            <div style="width:44px;height:44px;background:rgba(37,99,235,0.08);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              {%- if block.settings.icon != blank -%}
+                <img src="{{ block.settings.icon | image_url: width: 44 }}" alt="" style="width:22px;height:22px;">
+              {%- else -%}
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              {%- endif -%}
+            </div>
+            <div>
+              <h4 style="font-size:14px;font-weight:800;text-transform:uppercase;margin-bottom:4px;">{{ block.settings.title }}</h4>
+              <p style="font-size:13px;color:var(--brand-muted);line-height:1.5;">{{ block.settings.description }}</p>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Barra de Confianca",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Item de Confianca",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icone"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titulo",
+          "default": "Compra Segura"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Descricao",
+          "default": "Site protegido com certificado SSL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Barra de Confianca",
+      "blocks": [
+        { "type": "trust_item", "settings": { "title": "Compra Segura", "description": "Site protegido com certificado SSL e dados criptografados" } },
+        { "type": "trust_item", "settings": { "title": "Entrega Rapida", "description": "Enviamos para toda a regiao com rastreamento" } },
+        { "type": "trust_item", "settings": { "title": "Suporte Especializado", "description": "Equipe tecnica pronta para ajudar" } },
+        { "type": "trust_item", "settings": { "title": "12x Sem Juros", "description": "Parcele suas compras no cartao" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

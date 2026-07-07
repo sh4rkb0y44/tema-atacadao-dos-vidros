@@ -1,0 +1,154 @@
+<section class="hero" style="background:linear-gradient(135deg,var(--brand-dark) 0%,#1E293B 100%);padding:80px 0;position:relative;overflow:hidden;">
+  <div class="container" style="max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1;">
+    <div>
+      {%- if section.settings.badge != blank -%}
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);border-radius:100px;padding:6px 16px;font-size:12px;font-weight:700;color:var(--brand-light);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:24px;">
+          {{ section.settings.badge }}
+        </div>
+      {%- endif -%}
+
+      <h1 style="font-size:52px;font-weight:900;color:var(--white);letter-spacing:-0.04em;line-height:1.05;text-transform:uppercase;margin-bottom:20px;">
+        {{ section.settings.title }}
+      </h1>
+
+      {%- if section.settings.description != blank -%}
+        <p style="font-size:17px;color:#94A3B8;line-height:1.7;margin-bottom:36px;max-width:480px;">
+          {{ section.settings.description }}
+        </p>
+      {%- endif -%}
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        {%- if section.settings.btn_primary_text != blank -%}
+          <a href="{{ section.settings.btn_primary_link }}" style="display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:var(--white);font-size:15px;font-weight:700;padding:14px 28px;border-radius:10px;text-transform:uppercase;letter-spacing:0.02em;text-decoration:none;">
+            {{ section.settings.btn_primary_text }}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.btn_secondary_text != blank -%}
+          <a href="{{ section.settings.btn_secondary_link }}" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);font-size:15px;font-weight:700;padding:14px 28px;border-radius:10px;border:2px solid rgba(255,255,255,0.2);text-transform:uppercase;letter-spacing:0.02em;text-decoration:none;">
+            {{ section.settings.btn_secondary_text }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.show_stats -%}
+        <div style="display:flex;gap:40px;margin-top:48px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.1);">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'stat' -%}
+              <div>
+                <strong style="display:block;font-size:28px;font-weight:900;color:var(--white);letter-spacing:-0.02em;">{{ block.value }}</strong>
+                <span style="font-size:12px;color:#64748B;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;">{{ block.label }}</span>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div style="display:flex;justify-content:center;align-items:center;">
+      {%- if section.settings.image != blank -%}
+        <img src="{{ section.settings.image | image_url: width: 600 }}" alt="{{ section.settings.title }}" style="max-width:320px;height:auto;">
+      {%- else -%}
+        <svg width="320" height="320" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 20px 60px rgba(37,99,235,0.3));">
+          <defs><linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#3B82F6" stop-opacity="0.2"/><stop offset="100%" stop-color="#2563EB" stop-opacity="0"/></linearGradient></defs>
+          <circle cx="100" cy="100" r="90" fill="url(#glow)"/>
+          <g transform="translate(50,40)">
+            <polygon points="20,30 50,15 50,85 20,100" fill="{{ settings.color_brand }}" opacity="0.9"/>
+            <polygon points="50,15 80,30 80,100 50,85" fill="{{ settings.color_brand_deep }}"/>
+            <polygon points="20,30 50,15 80,30 50,45" fill="{{ settings.color_brand_light }}"/>
+          </g>
+        </svg>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge (texto pequeno acima do titulo)",
+      "default": "Novidade na loja"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Titulo principal",
+      "default": "<p>Vidros e Espelhos com <em>Preco de Atacado</em></p>"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Descricao",
+      "default": "Materiais de alta qualidade para sua obra ou projeto. Compre direto do fabricante com entrega rapida e segura em toda a regiao."
+    },
+    {
+      "type": "text",
+      "id": "btn_primary_text",
+      "label": "Texto do botao principal",
+      "default": "Ver Produtos"
+    },
+    {
+      "type": "url",
+      "id": "btn_primary_link",
+      "label": "Link do botao principal",
+      "default": "/collections"
+    },
+    {
+      "type": "text",
+      "id": "btn_secondary_text",
+      "label": "Texto do botao secundario",
+      "default": "Solicitar Orcamento"
+    },
+    {
+      "type": "url",
+      "id": "btn_secondary_link",
+      "label": "Link do botao secundario",
+      "default": "/pages/orcamento"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagem do hero"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stats",
+      "label": "Mostrar estatisticas",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Estatistica",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Valor",
+          "default": "2.500+"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Rotulo",
+          "default": "Produtos"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "blocks": [
+        { "type": "stat", "settings": { "value": "2.500+", "label": "Produtos" } },
+        { "type": "stat", "settings": { "value": "15 anos", "label": "De mercado" } },
+        { "type": "stat", "settings": { "value": "4.9", "label": "Avaliacao" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

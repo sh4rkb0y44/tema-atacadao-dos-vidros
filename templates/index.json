@@ -1,0 +1,68 @@
+{
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "settings": {}
+    },
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "stat-1": { "type": "stat", "settings": { "value": "2.500+", "label": "Produtos" } },
+        "stat-2": { "type": "stat", "settings": { "value": "15 anos", "label": "De mercado" } },
+        "stat-3": { "type": "stat", "settings": { "value": "4.9", "label": "Avaliacao" } }
+      },
+      "block_order": ["stat-1", "stat-2", "stat-3"],
+      "settings": {}
+    },
+    "categories": {
+      "type": "featured-categories",
+      "blocks": {
+        "cat-1": { "type": "category", "settings": { "title": "Vidros Temperados", "description": "Seguranca e resistencia", "link": "/collections/vidros-temperados" } },
+        "cat-2": { "type": "category", "settings": { "title": "Espelhos", "description": "Diversos tamanhos", "link": "/collections/espelhos" } },
+        "cat-3": { "type": "category", "settings": { "title": "Box para Banheiro", "description": "Sob medida", "link": "/collections/box-banheiro" } },
+        "cat-4": { "type": "category", "settings": { "title": "Acessorios", "description": "Ferragens e perfis", "link": "/collections/acessorios" } }
+      },
+      "block_order": ["cat-1", "cat-2", "cat-3", "cat-4"],
+      "settings": {}
+    },
+    "products": {
+      "type": "featured-products",
+      "settings": {}
+    },
+    "promo-banner": {
+      "type": "promo-banner",
+      "blocks": {
+        "feat-1": { "type": "feature", "settings": { "value": "30%", "label": "Desconto no atacado" } },
+        "feat-2": { "type": "feature", "settings": { "value": "48h", "label": "Orcamento rapido" } },
+        "feat-3": { "type": "feature", "settings": { "value": "Sob Medida", "label": "Corte personalizado" } },
+        "feat-4": { "type": "feature", "settings": { "value": "Frete", "label": "Entrega programada" } }
+      },
+      "block_order": ["feat-1", "feat-2", "feat-3", "feat-4"],
+      "settings": {}
+    },
+    "trust": {
+      "type": "trust-bar",
+      "blocks": {
+        "trust-1": { "type": "trust_item", "settings": { "title": "Compra Segura", "description": "Site protegido com certificado SSL" } },
+        "trust-2": { "type": "trust_item", "settings": { "title": "Entrega Rapida", "description": "Enviamos para toda a regiao com rastreamento" } },
+        "trust-3": { "type": "trust_item", "settings": { "title": "Suporte Especializado", "description": "Equipe tecnica pronta para ajudar" } },
+        "trust-4": { "type": "trust_item", "settings": { "title": "12x Sem Juros", "description": "Parcele suas compras no cartao" } }
+      },
+      "block_order": ["trust-1", "trust-2", "trust-3", "trust-4"],
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {}
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "hero",
+    "categories",
+    "products",
+    "promo-banner",
+    "trust",
+    "newsletter"
+  ]
+}
