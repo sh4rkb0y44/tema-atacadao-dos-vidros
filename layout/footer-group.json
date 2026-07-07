@@ -1,9 +1,0 @@
-{
-  "sections": {
-    "footer": {
-      "type": "footer",
-      "settings": {}
-    }
-  },
-  "order": ["footer"]
-}

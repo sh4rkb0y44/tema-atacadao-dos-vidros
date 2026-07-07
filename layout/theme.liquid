@@ -16,8 +16,8 @@
 
   <title>
     {{ page_title }}
-    {%- if current_tags %} &ndash; {{ 'general.tags' | t }} "{{ current_tags | join: ', ' }}"{% endif -%}
-    {%- if current_page != 1 %} &ndash; {{ 'general.page' | t }} {{ current_page }}{% endif -%}
+    {%- if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif -%}
+    {%- if current_page != 1 %} &ndash; Pagina {{ current_page }}{% endif -%}
     {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
   </title>
 
@@ -50,21 +50,18 @@
       --font-main: 'Archivo', -apple-system, system-ui, sans-serif;
     }
   </style>
-
-  <script>
-    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
-  </script>
 </head>
 <body class="template-{{ template | split: '.' | first }}">
-  <a class="skip-to-content" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
+  <a class="skip-to-content" href="#MainContent">Pular para o conteudo</a>
 
-  {% sections 'header-group' %}
+  {% section 'announcement-bar' %}
+  {% section 'header' %}
 
   <main id="MainContent" role="main">
     {{ content_for_layout }}
   </main>
 
-  {% sections 'footer-group' %}
+  {% section 'footer' %}
 
   <script src="{{ 'theme.js' | asset_url }}" defer></script>
 </body>

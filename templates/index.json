@@ -1,63 +1,201 @@
 {
   "sections": {
-    "announcement-bar": {
-      "type": "announcement-bar",
-      "settings": {}
-    },
     "hero": {
       "type": "hero",
       "blocks": {
-        "stat-1": { "type": "stat", "settings": { "value": "2.500+", "label": "Produtos" } },
-        "stat-2": { "type": "stat", "settings": { "value": "15 anos", "label": "De mercado" } },
-        "stat-3": { "type": "stat", "settings": { "value": "4.9", "label": "Avaliacao" } }
+        "stat-1": {
+          "type": "stat",
+          "settings": {
+            "value": "2.500+",
+            "label": "Produtos"
+          }
+        },
+        "stat-2": {
+          "type": "stat",
+          "settings": {
+            "value": "15 anos",
+            "label": "De mercado"
+          }
+        },
+        "stat-3": {
+          "type": "stat",
+          "settings": {
+            "value": "4.9",
+            "label": "Avaliacao"
+          }
+        }
       },
-      "block_order": ["stat-1", "stat-2", "stat-3"],
-      "settings": {}
+      "block_order": [
+        "stat-1",
+        "stat-2",
+        "stat-3"
+      ],
+      "settings": {
+        "badge": "Novidade na loja",
+        "title": "<p>Vidros e Espelhos com <em>Preco de Atacado</em></p>",
+        "description": "Materiais de alta qualidade para sua obra ou projeto. Compre direto do fabricante com entrega rapida e segura em toda a regiao.",
+        "btn_primary_text": "Ver Produtos",
+        "btn_primary_link": "/collections",
+        "btn_secondary_text": "Solicitar Orcamento",
+        "btn_secondary_link": "/pages/orcamento",
+        "show_stats": true
+      }
     },
     "categories": {
       "type": "featured-categories",
       "blocks": {
-        "cat-1": { "type": "category", "settings": { "title": "Vidros Temperados", "description": "Seguranca e resistencia", "link": "/collections/vidros-temperados" } },
-        "cat-2": { "type": "category", "settings": { "title": "Espelhos", "description": "Diversos tamanhos", "link": "/collections/espelhos" } },
-        "cat-3": { "type": "category", "settings": { "title": "Box para Banheiro", "description": "Sob medida", "link": "/collections/box-banheiro" } },
-        "cat-4": { "type": "category", "settings": { "title": "Acessorios", "description": "Ferragens e perfis", "link": "/collections/acessorios" } }
+        "cat-1": {
+          "type": "category",
+          "settings": {
+            "title": "Vidros Temperados",
+            "description": "Seguranca e resistencia",
+            "link": "/collections/vidros-temperados"
+          }
+        },
+        "cat-2": {
+          "type": "category",
+          "settings": {
+            "title": "Espelhos",
+            "description": "Diversos tamanhos",
+            "link": "/collections/espelhos"
+          }
+        },
+        "cat-3": {
+          "type": "category",
+          "settings": {
+            "title": "Box para Banheiro",
+            "description": "Sob medida",
+            "link": "/collections/box-banheiro"
+          }
+        },
+        "cat-4": {
+          "type": "category",
+          "settings": {
+            "title": "Acessorios",
+            "description": "Ferragens e perfis",
+            "link": "/collections/acessorios"
+          }
+        }
       },
-      "block_order": ["cat-1", "cat-2", "cat-3", "cat-4"],
-      "settings": {}
+      "block_order": [
+        "cat-1",
+        "cat-2",
+        "cat-3",
+        "cat-4"
+      ],
+      "settings": {
+        "subtitle": "Navegue por",
+        "title": "Categorias",
+        "link_text": "Ver todas",
+        "link": "/collections"
+      }
     },
     "products": {
       "type": "featured-products",
-      "settings": {}
+      "settings": {
+        "subtitle": "Mais vendidos",
+        "title": "Produtos em Destaque",
+        "products_to_show": 8,
+        "link_text": "Ver todos",
+        "link": "/collections/all"
+      }
     },
     "promo-banner": {
       "type": "promo-banner",
       "blocks": {
-        "feat-1": { "type": "feature", "settings": { "value": "30%", "label": "Desconto no atacado" } },
-        "feat-2": { "type": "feature", "settings": { "value": "48h", "label": "Orcamento rapido" } },
-        "feat-3": { "type": "feature", "settings": { "value": "Sob Medida", "label": "Corte personalizado" } },
-        "feat-4": { "type": "feature", "settings": { "value": "Frete", "label": "Entrega programada" } }
+        "feat-1": {
+          "type": "feature",
+          "settings": {
+            "value": "30%",
+            "label": "Desconto no atacado"
+          }
+        },
+        "feat-2": {
+          "type": "feature",
+          "settings": {
+            "value": "48h",
+            "label": "Orcamento rapido"
+          }
+        },
+        "feat-3": {
+          "type": "feature",
+          "settings": {
+            "value": "Sob Medida",
+            "label": "Corte personalizado"
+          }
+        },
+        "feat-4": {
+          "type": "feature",
+          "settings": {
+            "value": "Frete",
+            "label": "Entrega programada"
+          }
+        }
       },
-      "block_order": ["feat-1", "feat-2", "feat-3", "feat-4"],
-      "settings": {}
+      "block_order": [
+        "feat-1",
+        "feat-2",
+        "feat-3",
+        "feat-4"
+      ],
+      "settings": {
+        "title": "Orcamento para Grandes Projetos",
+        "description": "Precisa de vidros sob medida para sua obra? Faca seu orcamento com condicoes especiais para atacado e projetos de grande porte.",
+        "btn_text": "Solicitar Orcamento",
+        "btn_link": "/pages/orcamento"
+      }
     },
     "trust": {
       "type": "trust-bar",
       "blocks": {
-        "trust-1": { "type": "trust_item", "settings": { "title": "Compra Segura", "description": "Site protegido com certificado SSL" } },
-        "trust-2": { "type": "trust_item", "settings": { "title": "Entrega Rapida", "description": "Enviamos para toda a regiao com rastreamento" } },
-        "trust-3": { "type": "trust_item", "settings": { "title": "Suporte Especializado", "description": "Equipe tecnica pronta para ajudar" } },
-        "trust-4": { "type": "trust_item", "settings": { "title": "12x Sem Juros", "description": "Parcele suas compras no cartao" } }
+        "trust-1": {
+          "type": "trust_item",
+          "settings": {
+            "title": "Compra Segura",
+            "description": "Site protegido com certificado SSL e dados criptografados"
+          }
+        },
+        "trust-2": {
+          "type": "trust_item",
+          "settings": {
+            "title": "Entrega Rapida",
+            "description": "Enviamos para toda a regiao com rastreamento em tempo real"
+          }
+        },
+        "trust-3": {
+          "type": "trust_item",
+          "settings": {
+            "title": "Suporte Especializado",
+            "description": "Equipe tecnica pronta para ajudar na sua escolha"
+          }
+        },
+        "trust-4": {
+          "type": "trust_item",
+          "settings": {
+            "title": "12x Sem Juros",
+            "description": "Parcele suas compras no cartao de credito"
+          }
+        }
       },
-      "block_order": ["trust-1", "trust-2", "trust-3", "trust-4"],
+      "block_order": [
+        "trust-1",
+        "trust-2",
+        "trust-3",
+        "trust-4"
+      ],
       "settings": {}
     },
     "newsletter": {
       "type": "newsletter",
-      "settings": {}
+      "settings": {
+        "title": "Receba Ofertas Exclusivas",
+        "description": "Cadastre-se e receba promocoes, lancamentos e dicas para seu projeto direto no seu e-mail.",
+        "placeholder": "Seu melhor e-mail",
+        "btn_text": "Cadastrar"
+      }
     }
   },
   "order": [
-    "announcement-bar",
     "hero",
     "categories",
     "products",
