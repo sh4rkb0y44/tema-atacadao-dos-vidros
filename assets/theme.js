@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function showNotification(message) {
     var notification = document.createElement('div');
     notification.textContent = message;
-    notification.style.cssText = 'position:fixed;bottom:24px;right:24px;background:var(--brand-dark);color:white;padding:16px 24px;border-radius:10px;font-size:14px;font-weight:600;z-index:9999;animation:slideUp 0.3s ease;';
+    notification.style.cssText = 'position:fixed;bottom:24px;right:24px;background:var(--brand-dark);color:white;padding:16px 24px;border-radius:12px;font-size:14px;font-weight:600;z-index:9999;animation:slideUp 0.3s ease;box-shadow:0 8px 24px rgba(0,0,0,0.2);';
     document.body.appendChild(notification);
     setTimeout(function() {
       notification.style.opacity = '0';

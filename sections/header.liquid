@@ -1,48 +1,261 @@
-<header class="header" style="background:rgba(255,255,255,0.95);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1000;backdrop-filter:blur(12px);">
-  <div class="container" style="max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:16px;padding-bottom:16px;">
-
-    <a href="/" class="logo-link" style="display:flex;align-items:center;gap:12px;flex-shrink:0;text-decoration:none;color:inherit;">
-      {%- if settings.logo != blank -%}
-        <img src="{{ settings.logo | image_url: width: settings.logo_width }}" alt="{{ shop.name }}" style="height:auto;max-width:{{ settings.logo_width }}px;">
-      {%- else -%}
-        <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="20,25 50,15 50,65 20,75" fill="{{ settings.color_brand }}" opacity="0.9"/>
-          <polygon points="50,15 80,25 80,75 50,65" fill="{{ settings.color_brand_deep }}"/>
-          <polygon points="20,25 50,15 80,25 50,35" fill="{{ settings.color_brand_light }}"/>
-        </svg>
-      {%- endif -%}
-      <div class="logo-text" style="display:flex;flex-direction:column;line-height:1.1;">
-        <strong style="font-size:18px;font-weight:900;letter-spacing:-0.04em;text-transform:uppercase;">{{ shop.name }}</strong>
-      </div>
-    </a>
-
-    <nav class="nav-main" style="display:flex;align-items:center;gap:32px;">
-      {%- for link in section.settings.menu.links -%}
-        <a href="{{ link.url }}" style="font-size:14px;font-weight:600;color:var(--brand-muted);transition:color var(--transition);">
-          {{ link.title }}
-        </a>
-      {%- endfor -%}
-    </nav>
-
-    <div style="display:flex;align-items:center;gap:16px;flex-shrink:0;">
-      <form action="/search" method="get" role="search" style="display:flex;align-items:center;background:var(--brand-bg);border:1px solid var(--border);border-radius:8px;padding:8px 12px;gap:8px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="search" name="q" placeholder="Buscar produtos..." style="border:none;background:none;outline:none;font-size:14px;font-family:inherit;width:160px;color:var(--brand-dark);">
-      </form>
-
-      <a href="/cart" style="position:relative;display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:8px;background:var(--brand);color:var(--white);">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        {%- if cart.item_count > 0 -%}
-          <span style="position:absolute;top:-4px;right:-4px;background:var(--yellow);color:var(--brand-dark);font-size:10px;font-weight:800;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;">{{ cart.item_count }}</span>
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="/" class="logo-link">
+        {%- if settings.logo != blank -%}
+          <img src="{{ settings.logo | image_url: width: settings.logo_width }}" alt="{{ shop.name }}" class="logo-image">
+        {%- else -%}
+          <div class="logo-icon">
+            <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
+              <polygon points="20,25 50,15 50,65 20,75" fill="var(--brand)" opacity="0.9"/>
+              <polygon points="50,15 80,25 80,75 50,65" fill="var(--brand-deep)"/>
+              <polygon points="20,25 50,15 80,25 50,35" fill="var(--brand-light)"/>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <strong>{{ shop.name }}</strong>
+          </div>
         {%- endif -%}
       </a>
 
-      <button class="mobile-menu-btn" aria-label="Menu" style="display:none;width:42px;height:42px;align-items:center;justify-content:center;border-radius:8px;border:none;background:none;cursor:pointer;">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
+      <nav class="nav-main">
+        {%- for link in section.settings.menu.links -%}
+          <a href="{{ link.url }}" class="nav-link">
+            {{ link.title }}
+          </a>
+        {%- endfor -%}
+      </nav>
+
+      <div class="header-actions">
+        <form action="/search" method="get" class="search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="search" name="q" placeholder="Buscar produtos...">
+        </form>
+
+        <a href="/account" class="account-btn" aria-label="Minha conta">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+
+        <a href="/cart" class="cart-btn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          {%- if cart.item_count > 0 -%}
+            <span class="cart-count">{{ cart.item_count }}</span>
+          {%- endif -%}
+        </a>
+
+        <button class="mobile-menu-btn" aria-label="Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </header>
+
+<style>
+.header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.98);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  gap: 32px;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-deep) 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.logo-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.logo-text strong {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--brand-dark);
+}
+
+.nav-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brand-dark);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.nav-link:hover {
+  background: var(--brand-bg);
+  color: var(--brand);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: var(--brand-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  gap: 8px;
+  transition: all 0.2s;
+  width: 240px;
+}
+
+.search-box:focus-within {
+  border-color: var(--brand);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.search-box input {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 14px;
+  font-family: inherit;
+  width: 100%;
+  color: var(--brand-dark);
+}
+
+.search-box input::placeholder {
+  color: #94A3B8;
+}
+
+.search-box svg {
+  color: #94A3B8;
+  flex-shrink: 0;
+}
+
+.account-btn,
+.cart-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  color: var(--brand-dark);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.account-btn:hover,
+.cart-btn:hover {
+  background: var(--brand-bg);
+  color: var(--brand);
+}
+
+.cart-btn {
+  background: var(--brand);
+  color: var(--white);
+}
+
+.cart-btn:hover {
+  background: var(--brand-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--yellow);
+  color: var(--brand-dark);
+  font-size: 11px;
+  font-weight: 800;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--white);
+}
+
+.mobile-menu-btn {
+  display: none;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  cursor: pointer;
+  color: var(--brand-dark);
+}
+
+@media (max-width: 1024px) {
+  .nav-main {
+    display: none;
+  }
+  
+  .search-box {
+    width: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+  
+  .search-box {
+    display: none;
+  }
+  
+  .header-inner {
+    padding: 12px 0;
+    gap: 16px;
+  }
+}
+</style>
 
 {% schema %}
 {

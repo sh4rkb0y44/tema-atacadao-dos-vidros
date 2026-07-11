@@ -1,0 +1,416 @@
+<section class="slideshow-section" data-slideshow>
+  <div class="slideshow-container">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'slide' -%}
+        <div class="slide {% if forloop.first %}active{% endif %}" data-slide data-slide-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <img src="{{ block.settings.image | image_url: width: 1920 }}" alt="{{ block.settings.title }}" class="slide-image">
+          {%- else -%}
+            <div class="slide-placeholder">
+              <div class="slide-placeholder-content">
+                <svg width="80" height="80" viewBox="0 0 100 100" fill="none">
+                  <polygon points="20,25 50,15 50,65 20,75" fill="var(--brand)" opacity="0.9"/>
+                  <polygon points="50,15 80,25 80,75 50,65" fill="var(--brand-deep)"/>
+                  <polygon points="20,25 50,15 80,25 50,35" fill="var(--brand-light)"/>
+                </svg>
+                <span>Imagem promocional {{ forloop.index }}</span>
+              </div>
+            </div>
+          {%- endif -%}
+          <div class="slide-overlay"></div>
+          <div class="slide-content container">
+            {%- if block.settings.subtitle != blank -%}
+              <span class="slide-subtitle">{{ block.settings.subtitle }}</span>
+            {%- endif -%}
+            {%- if block.settings.title != blank -%}
+              <h2 class="slide-title">{{ block.settings.title }}</h2>
+            {%- endif -%}
+            {%- if block.settings.description != blank -%}
+              <p class="slide-description">{{ block.settings.description }}</p>
+            {%- endif -%}
+            {%- if block.settings.btn_text != blank -%}
+              <a href="{{ block.settings.btn_link }}" class="slide-btn">
+                {{ block.settings.btn_text }}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if section.blocks.size > 1 -%}
+      <button class="slideshow-arrow slideshow-prev" aria-label="Slide anterior">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="slideshow-arrow slideshow-next" aria-label="Proximo slide">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+
+      <div class="slideshow-dots">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'slide' -%}
+            <button class="slideshow-dot {% if forloop.first %}active{% endif %}" data-slide-dot data-slide-index="{{ forloop.index0 }}" aria-label="Ir para slide {{ forloop.index }}"></button>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+.slideshow-section {
+  position: relative;
+  background: var(--brand-dark);
+}
+
+.slideshow-container {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-deep) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-placeholder-content {
+  text-align: center;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.slide-placeholder-content svg {
+  filter: drop-shadow(0 8px 24px rgba(37, 99, 235, 0.3));
+}
+
+.slide-placeholder-content span {
+  font-size: 18px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.4) 60%, transparent 100%);
+}
+
+.slide-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.slide-subtitle {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--yellow);
+  margin-bottom: 16px;
+}
+
+.slide-title {
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  font-family: var(--font-display);
+  max-width: 600px;
+}
+
+.slide-description {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 500px;
+}
+
+.slide-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--brand);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 32px;
+  border-radius: 12px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: all 0.3s;
+  width: fit-content;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+}
+
+.slide-btn:hover {
+  background: var(--brand-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.4);
+}
+
+.slideshow-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  transition: all 0.3s;
+  backdrop-filter: blur(8px);
+}
+
+.slideshow-arrow:hover {
+  background: var(--brand);
+  border-color: var(--brand);
+}
+
+.slideshow-prev {
+  left: 24px;
+}
+
+.slideshow-next {
+  right: 24px;
+}
+
+.slideshow-dots {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+
+.slideshow-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.slideshow-dot.active {
+  background: var(--white);
+  transform: scale(1.2);
+}
+
+.slideshow-dot:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 1024px) {
+  .slideshow-container {
+    height: 450px;
+  }
+  
+  .slide-title {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slideshow-container {
+    height: 400px;
+  }
+  
+  .slide-overlay {
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.5) 100%);
+  }
+  
+  .slide-title {
+    font-size: 28px;
+  }
+  
+  .slide-description {
+    font-size: 16px;
+  }
+  
+  .slideshow-arrow {
+    display: none;
+  }
+  
+  .slide-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+</style>
+
+<script>
+(function() {
+  var slideshows = document.querySelectorAll('[data-slideshow]');
+  
+  slideshows.forEach(function(slideshow) {
+    var slides = slideshow.querySelectorAll('[data-slide]');
+    var dots = slideshow.querySelectorAll('[data-slide-dot]');
+    var prevBtn = slideshow.querySelector('.slideshow-prev');
+    var nextBtn = slideshow.querySelector('.slideshow-next');
+    var currentIndex = 0;
+    var autoplayInterval;
+    
+    if (slides.length <= 1) return;
+    
+    function showSlide(index) {
+      slides.forEach(function(slide) {
+        slide.classList.remove('active');
+      });
+      dots.forEach(function(dot) {
+        dot.classList.remove('active');
+      });
+      
+      slides[index].classList.add('active');
+      if (dots[index]) dots[index].classList.add('active');
+      currentIndex = index;
+    }
+    
+    function nextSlide() {
+      var next = (currentIndex + 1) % slides.length;
+      showSlide(next);
+    }
+    
+    function prevSlide() {
+      var prev = (currentIndex - 1 + slides.length) % slides.length;
+      showSlide(prev);
+    }
+    
+    function startAutoplay() {
+      autoplayInterval = setInterval(nextSlide, 5000);
+    }
+    
+    function stopAutoplay() {
+      clearInterval(autoplayInterval);
+    }
+    
+    if (nextBtn) nextBtn.addEventListener('click', function() { nextSlide(); stopAutoplay(); });
+    if (prevBtn) prevBtn.addEventListener('click', function() { prevSlide(); stopAutoplay(); });
+    
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        var index = parseInt(this.dataset.slideIndex);
+        showSlide(index);
+        stopAutoplay();
+      });
+    });
+    
+    slideshow.addEventListener('mouseenter', stopAutoplay);
+    slideshow.addEventListener('mouseleave', startAutoplay);
+    
+    startAutoplay();
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Carrossel Promocional",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Slides de promocao"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem do slide"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitulo",
+          "default": "Promocao exclusiva"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titulo",
+          "default": "Vidros Temperados com Ate 30% OFF"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descricao",
+          "default": "Aproveite condicoes especiais para obras e projetos de grande porte. Entrega rapida em toda a regiao."
+        },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Texto do botao",
+          "default": "Aproveitar Oferta"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Link do botao"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Carrossel Promocional",
+      "blocks": [
+        { "type": "slide", "settings": { "subtitle": "Promocao exclusiva", "title": "Vidros Temperados com Ate 30% OFF", "description": "Aproveite condicoes especiais para obras e projetos de grande porte. Entrega rapida em toda a regiao.", "btn_text": "Aproveitar Oferta" } },
+        { "type": "slide", "settings": { "subtitle": "Lancamento", "title": "Box para Banheiro Sob Medida", "description": "Qualidade e design para seu banheiro. Orcamento gratis em ate 48h.", "btn_text": "Ver Modelos" } },
+        { "type": "slide", "settings": { "subtitle": "Frete gratis", "title": "Espelhos com Preco de Atacado", "description": "Compre acima de R$ 499 e ganhe frete gratis para todo o Brasil.", "btn_text": "Comprar Agora" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

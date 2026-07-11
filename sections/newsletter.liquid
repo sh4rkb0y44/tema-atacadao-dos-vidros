@@ -1,22 +1,219 @@
-<section style="padding:0 0 80px;">
-  <div class="container" style="max-width:1200px;margin:0 auto;padding:0 24px;">
-    <div style="background:var(--brand-dark);border-radius:var(--radius-lg);padding:60px;text-align:center;position:relative;overflow:hidden;">
-      <div style="position:relative;z-index:1;">
-        <h2 style="font-size:32px;font-weight:900;color:var(--white);letter-spacing:-0.04em;text-transform:uppercase;margin-bottom:12px;">{{ section.settings.title }}</h2>
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-card">
+      <div class="newsletter-decoration">
+        <svg width="100%" height="100%" viewBox="0 0 800 400" fill="none" preserveAspectRatio="none">
+          <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.05)" stroke-width="2"/>
+          <circle cx="700" cy="300" r="120" stroke="rgba(255,255,255,0.05)" stroke-width="2"/>
+          <circle cx="400" cy="50" r="40" stroke="rgba(255,255,255,0.03)" stroke-width="2"/>
+        </svg>
+      </div>
+      
+      <div class="newsletter-content">
+        <div class="newsletter-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        
+        <h2 class="newsletter-title">{{ section.settings.title }}</h2>
         {%- if section.settings.description != blank -%}
-          <p style="font-size:16px;color:#94A3B8;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;">{{ section.settings.description }}</p>
+          <p class="newsletter-description">{{ section.settings.description }}</p>
         {%- endif -%}
+        
         {%- form 'customer', class: 'newsletter-form' -%}
-          <div style="display:flex;gap:12px;max-width:480px;margin:0 auto;">
+          <div class="newsletter-form-group">
             <input type="hidden" name="contact[tags]" value="newsletter">
-            <input type="email" name="contact[email]" placeholder="{{ section.settings.placeholder }}" required style="flex:1;padding:14px 20px;border-radius:10px;border:1px solid #334155;background:#1E293B;color:var(--white);font-size:15px;font-family:inherit;outline:none;">
-            <button type="submit" style="padding:14px 28px;background:var(--brand);color:var(--white);font-size:15px;font-weight:700;border-radius:10px;text-transform:uppercase;letter-spacing:0.02em;border:none;cursor:pointer;">{{ section.settings.btn_text }}</button>
+            <input type="email" name="contact[email]" placeholder="{{ section.settings.placeholder }}" required class="newsletter-input">
+            <button type="submit" class="newsletter-btn">{{ section.settings.btn_text }}</button>
           </div>
+          {%- if form.posted_successfully? -%}
+            <p class="newsletter-success">Obrigado por se cadastrar! Voce recebera nossas ofertas em breve.</p>
+          {%- endif -%}
         {%- endform -%}
+        
+        <div class="newsletter-benefits">
+          <div class="benefit-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Ofertas exclusivas</span>
+          </div>
+          <div class="benefit-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Lancamentos em primeira mao</span>
+          </div>
+          <div class="benefit-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Dicas para seu projeto</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+.newsletter-section {
+  padding: 80px 0;
+  background: var(--brand-bg);
+}
+
+.newsletter-card {
+  background: linear-gradient(135deg, var(--brand-dark) 0%, #1E293B 100%);
+  border-radius: 28px;
+  padding: 80px 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-decoration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.newsletter-content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.newsletter-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-deep) 100%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  color: var(--white);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+}
+
+.newsletter-title {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-family: var(--font-display);
+}
+
+.newsletter-description {
+  font-size: 17px;
+  color: #94A3B8;
+  margin-bottom: 36px;
+  line-height: 1.7;
+}
+
+.newsletter-form-group {
+  display: flex;
+  gap: 12px;
+  max-width: 480px;
+  margin: 0 auto 20px;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  background: #1E293B;
+  color: var(--white);
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.newsletter-input::placeholder {
+  color: #64748B;
+}
+
+.newsletter-input:focus {
+  border-color: var(--brand);
+  background: #0F172A;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.newsletter-btn {
+  padding: 16px 32px;
+  background: var(--brand);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.newsletter-btn:hover {
+  background: var(--brand-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+.newsletter-success {
+  color: var(--green);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.newsletter-benefits {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #94A3B8;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.benefit-item svg {
+  color: var(--green);
+}
+
+@media (max-width: 768px) {
+  .newsletter-section {
+    padding: 48px 0;
+  }
+  
+  .newsletter-card {
+    padding: 48px 24px;
+  }
+  
+  .newsletter-title {
+    font-size: 28px;
+  }
+  
+  .newsletter-form-group {
+    flex-direction: column;
+  }
+  
+  .newsletter-btn {
+    width: 100%;
+  }
+  
+  .newsletter-benefits {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+}
+</style>
 
 {% schema %}
 {
@@ -37,7 +234,7 @@
     {
       "type": "text",
       "id": "placeholder",
-      "label": "Placeholder do input",
+      "label": "Placeholder",
       "default": "Seu melhor e-mail"
     },
     {

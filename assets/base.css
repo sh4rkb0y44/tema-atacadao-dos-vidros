@@ -33,7 +33,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -44,22 +44,12 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   color: #CBD5E1;
 }
 
-.prod-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-}
-
-.add-cart-btn:hover {
-  background: var(--brand-deep) !important;
-  transform: scale(1.05);
-}
-
 @media (max-width: 1024px) {
-  .hero h1 { font-size: 40px; }
+  .hero-title { font-size: 44px; }
+  .section-title { font-size: 32px; }
 }
 
 @media (max-width: 768px) {
-  .nav-main { display: none !important; }
-  .mobile-menu-btn { display: flex !important; }
-  form[role="search"] { display: none !important; }
+  .hero-title { font-size: 32px; }
+  .section-title { font-size: 28px; }
 }

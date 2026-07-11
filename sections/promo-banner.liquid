@@ -1,33 +1,214 @@
-<section style="padding:0 0 80px;">
-  <div class="container" style="max-width:1200px;margin:0 auto;padding:0 24px;">
-    <div style="background:linear-gradient(135deg,var(--brand) 0%,var(--brand-deep) 100%);border-radius:var(--radius-lg);padding:60px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden;">
-
-      <div style="position:relative;z-index:1;">
-        <h2 style="font-size:40px;font-weight:900;color:var(--white);letter-spacing:-0.04em;text-transform:uppercase;line-height:1.05;margin-bottom:16px;">{{ section.settings.title }}</h2>
+<section class="promo-section">
+  <div class="container">
+    <div class="promo-card">
+      <div class="promo-content">
+        <span class="promo-badge">Orcamento Especial</span>
+        <h2 class="promo-title">{{ section.settings.title }}</h2>
         {%- if section.settings.description != blank -%}
-          <p style="font-size:16px;color:rgba(255,255,255,0.7);margin-bottom:28px;line-height:1.6;">{{ section.settings.description }}</p>
+          <p class="promo-description">{{ section.settings.description }}</p>
         {%- endif -%}
         {%- if section.settings.btn_text != blank -%}
-          <a href="{{ section.settings.btn_link }}" style="display:inline-flex;align-items:center;gap:8px;background:var(--white);color:var(--brand);font-size:15px;font-weight:700;padding:14px 28px;border-radius:10px;text-transform:uppercase;letter-spacing:0.02em;text-decoration:none;">
+          <a href="{{ section.settings.btn_link }}" class="btn-white">
             {{ section.settings.btn_text }}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
         {%- endif -%}
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;position:relative;z-index:1;">
+      <div class="promo-features">
         {%- for block in section.blocks -%}
           {%- if block.type == 'feature' -%}
-            <div style="background:rgba(255,255,255,0.1);border-radius:var(--radius);padding:20px;" {{ block.shopify_attributes }}>
-              <strong style="display:block;font-size:24px;font-weight:900;color:var(--white);margin-bottom:4px;">{{ block.value }}</strong>
-              <span style="font-size:12px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.05em;font-weight:600;">{{ block.label }}</span>
+            <div class="promo-feature" {{ block.shopify_attributes }}>
+              <strong class="feature-value">{{ block.settings.value }}</strong>
+              <span class="feature-label">{{ block.settings.label }}</span>
             </div>
           {%- endif -%}
         {%- endfor -%}
       </div>
 
+      <div class="promo-decoration">
+        <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+          <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+          <circle cx="100" cy="100" r="60" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+          <circle cx="100" cy="100" r="40" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+        </svg>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+.promo-section {
+  padding: 80px 0;
+  background: var(--brand-bg);
+}
+
+.promo-card {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-deep) 100%);
+  border-radius: 28px;
+  padding: 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.promo-card::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+}
+
+.promo-content {
+  position: relative;
+  z-index: 1;
+}
+
+.promo-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 8px 16px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+
+.promo-title {
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  margin-bottom: 20px;
+  font-family: var(--font-display);
+}
+
+.promo-description {
+  font-size: 17px;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 32px;
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  color: var(--brand);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 32px;
+  border-radius: 12px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: all 0.3s;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.btn-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+}
+
+.promo-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.promo-feature {
+  background: rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.3s;
+}
+
+.promo-feature:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-4px);
+}
+
+.feature-value {
+  display: block;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.feature-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.promo-decoration {
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .promo-card {
+    grid-template-columns: 1fr;
+    padding: 48px;
+  }
+  
+  .promo-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .promo-section {
+    padding: 48px 0;
+  }
+  
+  .promo-card {
+    padding: 32px 24px;
+  }
+  
+  .promo-title {
+    font-size: 28px;
+  }
+  
+  .promo-features {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .promo-feature {
+    padding: 16px;
+  }
+  
+  .feature-value {
+    font-size: 22px;
+  }
+}
+</style>
 
 {% schema %}
 {
@@ -54,8 +235,7 @@
     {
       "type": "url",
       "id": "btn_link",
-      "label": "Link do botao",
-      "default": "/pages/orcamento"
+      "label": "Link do botao"
     }
   ],
   "blocks": [

@@ -1,36 +1,241 @@
-<section style="padding:80px 0;">
-  <div class="container" style="max-width:1200px;margin:0 auto;padding:0 24px;">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;gap:20px;">
-      <div>
-        <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--brand);margin-bottom:8px;display:block;">{{ section.settings.subtitle }}</span>
-        <h2 style="font-size:36px;font-weight:900;letter-spacing:-0.04em;text-transform:uppercase;line-height:1.1;">{{ section.settings.title }}</h2>
+<section class="categories-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-header-content">
+        <span class="section-label">{{ section.settings.subtitle }}</span>
+        <h2 class="section-title">{{ section.settings.title }}</h2>
       </div>
       {%- if section.settings.link_text != blank -%}
-        <a href="{{ section.settings.link }}" style="font-size:14px;font-weight:700;color:var(--brand);display:flex;align-items:center;gap:6px;text-decoration:none;">
-          {{ section.settings.link_text }} &rarr;
+        <a href="{{ section.settings.link }}" class="section-link">
+          {{ section.settings.link_text }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
       {%- endif -%}
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+    <div class="categories-grid">
       {%- for block in section.blocks -%}
-        <a href="{{ block.settings.link | default: '#' }}" style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px 24px;text-align:center;transition:all var(--transition);text-decoration:none;color:inherit;" {{ block.shopify_attributes }}>
-          {%- if block.settings.icon != blank -%}
-            <div style="width:72px;height:72px;margin:0 auto 20px;background:var(--brand-bg);border-radius:16px;display:flex;align-items:center;justify-content:center;">
-              <img src="{{ block.settings.icon | image_url: width: 64 }}" alt="" style="width:32px;height:32px;">
-            </div>
-          {%- else -%}
-            <div style="width:72px;height:72px;margin:0 auto 20px;background:var(--brand-bg);border-radius:16px;display:flex;align-items:center;justify-content:center;">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-            </div>
-          {%- endif -%}
-          <h3 style="font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:6px;">{{ block.settings.title }}</h3>
-          <p style="font-size:13px;color:var(--brand-muted);">{{ block.settings.description }}</p>
+        <a href="{{ block.settings.link }}" class="category-card" {{ block.shopify_attributes }}>
+          <div class="category-icon">
+            {%- if block.settings.icon != blank -%}
+              <img src="{{ block.settings.icon | image_url: width: 64 }}" alt="{{ block.settings.title }}">
+            {%- else -%}
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v18"/></svg>
+            {%- endif -%}
+          </div>
+          <div class="category-content">
+            <h3 class="category-title">{{ block.settings.title }}</h3>
+            <p class="category-description">{{ block.settings.description }}</p>
+            <span class="category-link">
+              Ver produtos
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </div>
         </a>
       {%- endfor -%}
     </div>
   </div>
 </section>
+
+<style>
+.categories-section {
+  padding: 80px 0;
+  background: var(--brand-bg);
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  gap: 24px;
+}
+
+.section-header-content {
+  flex: 1;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--brand);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.section-title {
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--brand-dark);
+  font-family: var(--font-display);
+}
+
+.section-link {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--brand);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: gap 0.3s;
+  flex-shrink: 0;
+}
+
+.section-link:hover {
+  gap: 12px;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.category-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand) 0%, var(--brand-light) 100%);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+
+.category-card:hover {
+  border-color: var(--brand);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+.category-card:hover::before {
+  transform: scaleX(1);
+}
+
+.category-icon {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(59, 130, 246, 0.04) 100%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.category-icon svg {
+  color: var(--brand);
+}
+
+.category-icon img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.category-card:hover .category-icon {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-deep) 100%);
+  transform: scale(1.05);
+}
+
+.category-card:hover .category-icon svg {
+  color: var(--white);
+}
+
+.category-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-title {
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+  color: var(--brand-dark);
+}
+
+.category-description {
+  font-size: 14px;
+  color: var(--brand-muted);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.category-link {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brand);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.3s;
+}
+
+.category-card:hover .category-link {
+  gap: 10px;
+}
+
+@media (max-width: 1024px) {
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .section-title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .categories-section {
+    padding: 48px 0;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .section-title {
+    font-size: 28px;
+  }
+  
+  .categories-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .category-card {
+    padding: 24px 20px;
+  }
+}
+</style>
 
 {% schema %}
 {
@@ -94,10 +299,10 @@
     {
       "name": "Categorias",
       "blocks": [
-        { "type": "category", "settings": { "title": "Vidros Temperados", "description": "Seguranca e resistencia", "link": "/collections/vidros-temperados" } },
-        { "type": "category", "settings": { "title": "Espelhos", "description": "Diversos tamanhos", "link": "/collections/espelhos" } },
-        { "type": "category", "settings": { "title": "Box para Banheiro", "description": "Sob medida", "link": "/collections/box-banheiro" } },
-        { "type": "category", "settings": { "title": "Acessorios", "description": "Ferragens e perfis", "link": "/collections/acessorios" } }
+        { "type": "category", "settings": { "title": "Vidros Temperados", "description": "Seguranca e resistencia para sua obra", "link": "/collections/vidros-temperados" } },
+        { "type": "category", "settings": { "title": "Espelhos", "description": "Diversos tamanhos e acabamentos", "link": "/collections/espelhos" } },
+        { "type": "category", "settings": { "title": "Box para Banheiro", "description": "Sob medida com instalacao", "link": "/collections/box-banheiro" } },
+        { "type": "category", "settings": { "title": "Acessorios", "description": "Ferragens e perfis de aluminio", "link": "/collections/acessorios" } }
       ]
     }
   ]
