@@ -3,24 +3,14 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
-        "slide-promo": {
-          "type": "slide",
-          "settings": {
-            "asset_image": "banner-promocao.jpg",
-            "subtitle": "",
-            "title": "",
-            "description": "",
-            "btn_text": "Aproveitar Agora",
-            "btn_link": "/collections/ofertas"
-          }
-        },
         "slide-1": {
           "type": "slide",
           "settings": {
             "subtitle": "Promocao exclusiva",
             "title": "Vidros Temperados com Ate 30% OFF",
             "description": "Aproveite condicoes especiais para obras e projetos de grande porte. Entrega rapida em toda a regiao.",
-            "btn_text": "Aproveitar Oferta"
+            "btn_text": "Aproveitar Oferta",
+            "btn_link": "/collections/all"
           }
         },
         "slide-2": {
@@ -29,7 +19,8 @@
             "subtitle": "Lancamento",
             "title": "Box para Banheiro Sob Medida",
             "description": "Qualidade e design para seu banheiro. Orcamento gratis em ate 48h.",
-            "btn_text": "Ver Modelos"
+            "btn_text": "Ver Modelos",
+            "btn_link": "/collections/all"
           }
         },
         "slide-3": {
@@ -38,12 +29,12 @@
             "subtitle": "Frete gratis",
             "title": "Espelhos com Preco de Atacado",
             "description": "Compre acima de R$ 499 e ganhe frete gratis para todo o Brasil.",
-            "btn_text": "Comprar Agora"
+            "btn_text": "Comprar Agora",
+            "btn_link": "/collections/all"
           }
         }
       },
       "block_order": [
-        "slide-promo",
         "slide-1",
         "slide-2",
         "slide-3"
@@ -85,7 +76,7 @@
         "subtitle": "Navegue por",
         "title": "Categorias",
         "link_text": "Ver todas",
-        "link": "/collections"
+        "link": "/collections/all"
       },
       "blocks": {
         "cat-1": {
@@ -93,7 +84,7 @@
           "settings": {
             "title": "Vidros Temperados",
             "description": "Seguranca e resistencia para sua obra",
-            "link": "/collections/vidros-temperados"
+            "link": "/collections/all"
           }
         },
         "cat-2": {
@@ -101,7 +92,7 @@
           "settings": {
             "title": "Espelhos",
             "description": "Diversos tamanhos e acabamentos",
-            "link": "/collections/espelhos"
+            "link": "/collections/all"
           }
         },
         "cat-3": {
@@ -109,7 +100,7 @@
           "settings": {
             "title": "Box para Banheiro",
             "description": "Sob medida com instalacao",
-            "link": "/collections/box-banheiro"
+            "link": "/collections/all"
           }
         },
         "cat-4": {
@@ -117,7 +108,7 @@
           "settings": {
             "title": "Acessorios",
             "description": "Ferragens e perfis de aluminio",
-            "link": "/collections/acessorios"
+            "link": "/collections/all"
           }
         }
       },
@@ -132,7 +123,8 @@
       "type": "featured-products",
       "settings": {
         "subtitle": "Mais vendidos",
-        "title": "Os Favoritos da Galera",
+        "title": "Os Favoritos da Galeria",
+        "collection": "all",
         "products_to_show": 8,
         "link_text": "Ver todos",
         "link": "/collections/all"
@@ -143,7 +135,8 @@
       "settings": {
         "title": "Orcamento para Grandes Projetos",
         "description": "Precisa de vidros sob medida para sua obra? Faca seu orcamento com condicoes especiais para atacado e projetos de grande porte.",
-        "btn_text": "Solicitar Orcamento"
+        "btn_text": "Solicitar Orcamento",
+        "btn_link": "/pages/orcamento"
       },
       "blocks": {
         "feat-1": {

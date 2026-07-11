@@ -14,31 +14,22 @@
     </div>
 
     <div class="products-grid">
+      {%- assign selected_count = 0 -%}
       {%- for block in section.blocks -%}
         {%- if block.type == 'product' -%}
           {%- assign product = all_products[block.settings.product] -%}
           {%- if product != blank -%}
+            {%- assign selected_count = selected_count | plus: 1 -%}
             {%- render 'product-card', product: product -%}
-          {%- else -%}
-            <div class="product-card">
-              <div class="product-image">
-                {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
-              </div>
-              <div class="product-info">
-                <div class="product-category">Categoria</div>
-                <h3 class="product-name">Produto selecionado {{ forloop.index }}</h3>
-                <p class="product-description">Selecione um produto no editor</p>
-                <div class="product-bottom">
-                  <div class="product-price"><strong>{{ 9990 | money }}</strong></div>
-                  <button class="add-cart-btn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
-                  </button>
-                </div>
-              </div>
-            </div>
           {%- endif -%}
         {%- endif -%}
       {%- endfor -%}
+
+      {%- if selected_count == 0 -%}
+        {%- for product in collections.all.products limit: 4 -%}
+          {%- render 'product-card', product: product -%}
+        {%- endfor -%}
+      {%- endif -%}
     </div>
   </div>
 </section>
