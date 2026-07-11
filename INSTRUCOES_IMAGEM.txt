@@ -1,0 +1,16 @@
+INSTRUCOES PARA ADICIONAR A IMAGEM DA PROMOCAO
+
+O tema ja possui um slide configurado para usar a imagem: banner-promocao.jpg
+
+Opcao 1 - Antes de fazer o upload do ZIP:
+1. Salve a imagem da promocao que voce me enviou como: banner-promocao.jpg
+2. Coloque ela dentro da pasta: assets/
+3. Compacte o tema novamente em ZIP
+4. Faca o upload no Shopify
+
+Opcao 2 - Apos fazer o upload do tema:
+1. Va no editor de tema (Personalizar)
+2. Clique na secao "Carrossel Promocional"
+3. No primeiro slide, voce pode fazer upload da imagem diretamente pelo image_picker
+
+A imagem ja esta configurada como primeiro slide do carrossel.

@@ -3,6 +3,17 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
+        "slide-promo": {
+          "type": "slide",
+          "settings": {
+            "asset_image": "banner-promocao.jpg",
+            "subtitle": "",
+            "title": "",
+            "description": "",
+            "btn_text": "Aproveitar Agora",
+            "btn_link": "/collections/ofertas"
+          }
+        },
         "slide-1": {
           "type": "slide",
           "settings": {
@@ -32,6 +43,7 @@
         }
       },
       "block_order": [
+        "slide-promo",
         "slide-1",
         "slide-2",
         "slide-3"

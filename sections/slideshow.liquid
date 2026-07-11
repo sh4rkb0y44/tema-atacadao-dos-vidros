@@ -5,6 +5,8 @@
         <div class="slide {% if forloop.first %}active{% endif %}" data-slide data-slide-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
           {%- if block.settings.image != blank -%}
             <img src="{{ block.settings.image | image_url: width: 1920 }}" alt="{{ block.settings.title }}" class="slide-image">
+          {%- elsif block.settings.asset_image != blank -%}
+            <img src="{{ block.settings.asset_image | asset_url }}" alt="{{ block.settings.title }}" class="slide-image">
           {%- else -%}
             <div class="slide-placeholder">
               <div class="slide-placeholder-content">
@@ -369,6 +371,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Imagem do slide"
+        },
+        {
+          "type": "text",
+          "id": "asset_image",
+          "label": "Imagem dos assets (nome do arquivo)",
+          "info": "Ex: banner-promocao.jpg - salve a imagem na pasta assets do tema"
         },
         {
           "type": "text",
