@@ -18,7 +18,7 @@
       {%- for block in section.blocks -%}
         {%- if block.type == 'product' -%}
           {%- assign product = all_products[block.settings.product] -%}
-          {%- if product != blank -%}
+          {%- if product != blank and product.featured_image != blank -%}
             {%- assign selected_count = selected_count | plus: 1 -%}
             {%- render 'product-card', product: product -%}
           {%- endif -%}
@@ -26,8 +26,12 @@
       {%- endfor -%}
 
       {%- if selected_count == 0 -%}
-        {%- for product in collections.all.products limit: 4 -%}
-          {%- render 'product-card', product: product -%}
+        {%- assign displayed = 0 -%}
+        {%- for product in collections.all.products -%}
+          {%- if displayed < 4 and product.featured_image != blank -%}
+            {%- assign displayed = displayed | plus: 1 -%}
+            {%- render 'product-card', product: product -%}
+          {%- endif -%}
         {%- endfor -%}
       {%- endif -%}
     </div>

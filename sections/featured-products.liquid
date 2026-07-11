@@ -19,13 +19,21 @@
       {%- if selected_collection == blank -%}
         {%- assign selected_collection = collections.all -%}
       {%- endif -%}
-      {%- for product in selected_collection.products limit: product_limit -%}
-        {%- render 'product-card', product: product -%}
-      {%- else -%}
-        {%- for product in collections.all.products limit: product_limit -%}
+      {%- assign displayed = 0 -%}
+      {%- for product in selected_collection.products -%}
+        {%- if displayed < product_limit and product.featured_image != blank -%}
+          {%- assign displayed = displayed | plus: 1 -%}
           {%- render 'product-card', product: product -%}
-        {%- endfor -%}
+        {%- endif -%}
       {%- endfor -%}
+      {%- if displayed == 0 -%}
+        {%- for product in collections.all.products -%}
+          {%- if displayed < product_limit and product.featured_image != blank -%}
+            {%- assign displayed = displayed | plus: 1 -%}
+            {%- render 'product-card', product: product -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
     </div>
   </div>
 </section>

@@ -9,12 +9,16 @@
       </div>
       <div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+          {%- assign visible_count = 0 -%}
           {%- for product in collection.products -%}
-            {%- render 'product-card', product: product -%}
+            {%- if product.featured_image != blank -%}
+              {%- assign visible_count = visible_count | plus: 1 -%}
+              {%- render 'product-card', product: product -%}
+            {%- endif -%}
           {%- endfor -%}
         </div>
-        {% if collection.products.size == 0 %}
-          <p style="text-align:center;color:var(--brand-muted);padding:60px 0;">Nenhum produto encontrado nesta colecao.</p>
+        {% if visible_count == 0 %}
+          <p style="text-align:center;color:var(--brand-muted);padding:60px 0;">Nenhum produto com imagem encontrado nesta colecao.</p>
         {% endif %}
         {%- if paginate.pages > 1 -%}
           <div style="display:flex;justify-content:center;gap:8px;margin-top:40px;">
